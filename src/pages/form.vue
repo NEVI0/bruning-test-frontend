@@ -77,7 +77,13 @@ export default {
       <hr class="block md:hidden w-full border-gray-100 my-8" />
 
       <div class="flex flex-col md:flex-row items-center gap-4">
-        <Input id="document" label="CPF" type="text" v-model="form.document" />
+        <Input
+          id="document"
+          label="CPF"
+          type="text"
+          placeholder="___.___.___-__"
+          v-model="form.document"
+        />
 
         <Input
           id="birthday"

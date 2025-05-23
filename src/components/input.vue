@@ -3,6 +3,7 @@ defineProps<{
   id: string;
   label: string;
   type: string;
+  placeholder: string;
   modelValue: string;
 }>();
 
@@ -21,6 +22,7 @@ defineEmits<{
       :id="id"
       :type="type"
       :value="modelValue"
+      :placeholder="placeholder"
       @input="$emit('update:modelValue', $event.target.value)"
       class="w-full h-[48px] px-4 rounded-xl border border-gray-300 outline-none focus:border-green-500"
     />
