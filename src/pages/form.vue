@@ -15,16 +15,19 @@ export default {
     };
   },
   methods: {
-    handleSubmit() {
-      console.log('Form submitted:', this.form);
-      // Example: send data via axios to an API
-      // this.$axios.post('/api/submit', this.form)
+    goBack() {
+      this.$router.back();
     },
     clearForm() {
       // Reset all form fields to empty strings
       Object.keys(this.form).forEach((key) => {
         this.form[key] = '';
       });
+    },
+    handleSubmit() {
+      console.log('Form submitted:', this.form);
+      // Example: send data via axios to an API
+      // this.$axios.post('/api/submit', this.form)
     },
   },
 };
@@ -107,28 +110,13 @@ export default {
       class="flex flex-col md:flex-row items-center justify-between gap-4"
     >
       <div class="flex items-center gap-4 w-full md:w-auto">
-        <button
-          type="button"
-          class="cursor-pointer w-full md:w-[144px] h-[48px] px-6 rounded-xl font-medium whitespace-nowrap flex items-center justify-center transition-colors text-gray-500 bg-gray-500/15 hover:bg-gray-500/25"
-        >
-          Voltar
-        </button>
-
-        <button
-          type="button"
-          @click="clearForm"
-          class="cursor-pointer w-full md:w-[144px] h-[48px] px-6 rounded-xl font-medium whitespace-nowrap flex items-center justify-center transition-colors text-gray-500 bg-gray-500/15 hover:bg-gray-500/25"
-        >
-          Limpar
-        </button>
+        <Button class="w-full md:w-[144px]" @click="goBack">Voltar</Button>
+        <Button class="w-full md:w-[144px]" @click="clearForm">Limpar</Button>
       </div>
 
-      <button
-        type="submit"
-        class="cursor-pointer w-full md:w-[144px] h-[48px] px-6 rounded-xl font-medium whitespace-nowrap flex items-center justify-center transition-colors text-green-500 bg-green-500/15 hover:bg-green-500/25"
+      <Button class="w-full md:w-[144px]" variant="primary" type="submit"
+        >Salvar</Button
       >
-        Salvar
-      </button>
     </section>
   </form>
 </template>
