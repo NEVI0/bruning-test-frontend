@@ -1,5 +1,18 @@
 <script>
 export default {
+  created() {
+    // Get data from URL query parameter
+    const queryData = this.$route.query.data;
+
+    if (queryData) {
+      try {
+        const parsedData = JSON.parse(queryData);
+        this.form = { ...this.form, ...parsedData };
+      } catch (e) {
+        console.error('Error parsing form data:', e);
+      }
+    }
+  },
   data() {
     return {
       form: {
