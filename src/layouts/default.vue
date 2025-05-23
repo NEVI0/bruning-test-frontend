@@ -15,15 +15,18 @@
         <NuxtLink
           to="/"
           class="text-gray-700 hover:text-green-500 transition-colors"
-          >Colaboradores</NuxtLink
         >
+          Colaboradores
+        </NuxtLink>
+
         <div class="w-[1px] h-[16px] bg-gray-300 rounded-full" />
 
         <NuxtLink
           to="/form"
           class="text-gray-700 hover:text-green-500 transition-colors"
-          >Novo</NuxtLink
         >
+          Novo
+        </NuxtLink>
       </nav>
     </div>
   </header>
@@ -59,36 +62,21 @@
       </div>
 
       <nav class="flex items-center gap-4 h-full">
-        <NuxtLink
-          to="https://www.instagram.com/nevio_costa/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="w-[40px] h-[40px] md:w-[44px] md:h-[44px] flex items-center justify-center rounded-xl text-green-500 hover:bg-green-500/15 transition-colors"
-        >
-          <Icon name="lucide:instagram" style="width: 24px; height: 24px" />
-        </NuxtLink>
+        <SocialLink
+          href="https://www.instagram.com/nevio_costa/"
+          icon="lucide:instagram"
+        />
 
         <div class="w-[1px] h-[16px] bg-gray-300 rounded-full" />
 
-        <NuxtLink
-          to="https://www.linkedin.com/in/n%C3%A9vio-magagnin-045710177/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="w-[40px] h-[40px] md:w-[44px] md:h-[44px] flex items-center justify-center rounded-xl text-green-500 hover:bg-green-500/15 transition-colors"
-        >
-          <Icon name="lucide:linkedin" style="width: 24px; height: 24px" />
-        </NuxtLink>
+        <SocialLink
+          href="https://www.linkedin.com/in/n%C3%A9vio-magagnin-045710177/"
+          icon="lucide:linkedin"
+        />
 
         <div class="w-[1px] h-[16px] bg-gray-300 rounded-full" />
 
-        <NuxtLink
-          to="https://github.com/NEVI0"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="w-[40px] h-[40px] md:w-[44px] md:h-[44px] flex items-center justify-center rounded-xl text-green-500 hover:bg-green-500/15 transition-colors"
-        >
-          <Icon name="lucide:github" style="width: 24px; height: 24px" />
-        </NuxtLink>
+        <SocialLink href="https://github.com/NEVI0" icon="lucide:github" />
       </nav>
     </div>
   </footer>
