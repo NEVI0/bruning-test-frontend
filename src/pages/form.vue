@@ -103,21 +103,21 @@ export default {
       </div>
     </section>
 
-    <section class="flex items-center justify-between gap-4">
-      <div class="flex items-center gap-4">
-        <NuxtLink to="/">
-          <button
-            type="button"
-            class="cursor-pointer w-full md:w-[120px] h-[48px] px-6 rounded-xl font-medium whitespace-nowrap flex items-center justify-center transition-colors text-gray-500 bg-gray-500/15 hover:bg-gray-500/25"
-          >
-            Voltar
-          </button>
-        </NuxtLink>
+    <section
+      class="flex flex-col md:flex-row items-center justify-between gap-4"
+    >
+      <div class="flex items-center gap-4 w-full md:w-auto">
+        <button
+          type="button"
+          class="cursor-pointer w-full md:w-[144px] h-[48px] px-6 rounded-xl font-medium whitespace-nowrap flex items-center justify-center transition-colors text-gray-500 bg-gray-500/15 hover:bg-gray-500/25"
+        >
+          Voltar
+        </button>
 
         <button
           type="button"
           @click="clearForm"
-          class="cursor-pointer w-full md:w-[120px] h-[48px] px-6 rounded-xl font-medium whitespace-nowrap flex items-center justify-center transition-colors text-gray-500 bg-gray-500/15 hover:bg-gray-500/25"
+          class="cursor-pointer w-full md:w-[144px] h-[48px] px-6 rounded-xl font-medium whitespace-nowrap flex items-center justify-center transition-colors text-gray-500 bg-gray-500/15 hover:bg-gray-500/25"
         >
           Limpar
         </button>
@@ -125,7 +125,7 @@ export default {
 
       <button
         type="submit"
-        class="cursor-pointer w-full md:w-[120px] h-[48px] px-6 rounded-xl font-medium whitespace-nowrap flex items-center justify-center transition-colors text-green-500 bg-green-500/15 hover:bg-green-500/25"
+        class="cursor-pointer w-full md:w-[144px] h-[48px] px-6 rounded-xl font-medium whitespace-nowrap flex items-center justify-center transition-colors text-green-500 bg-green-500/15 hover:bg-green-500/25"
       >
         Salvar
       </button>
