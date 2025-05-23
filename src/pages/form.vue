@@ -39,104 +39,61 @@ export default {
   <form @submit.prevent="handleSubmit" class="flex flex-col gap-16">
     <section class="flex flex-col gap-4">
       <div class="flex flex-col md:flex-row items-center gap-4">
-        <div class="flex flex-col gap-2 w-full">
-          <label for="code">Código</label>
+        <Input id="code" label="Código" type="text" v-model="form.code" />
 
-          <input
-            v-model="form.code"
-            type="text"
-            id="code"
-            class="w-full h-[48px] px-4 rounded-xl border border-gray-300 outline-none focus:border-green-500"
-          />
-        </div>
+        <Input
+          id="name"
+          label="Nome completo"
+          type="text"
+          v-model="form.name"
+        />
 
-        <div class="flex flex-col gap-2 w-full">
-          <label for="name">Nome completo</label>
-
-          <input
-            v-model="form.name"
-            type="text"
-            id="name"
-            class="w-full h-[48px] px-4 rounded-xl border border-gray-300 outline-none focus:border-green-500"
-          />
-        </div>
-
-        <div class="flex flex-col gap-2 w-full">
-          <label for="nickname">Apelido</label>
-
-          <input
-            v-model="form.nickname"
-            type="text"
-            id="nickname"
-            class="w-full h-[48px] px-4 rounded-xl border border-gray-300 outline-none focus:border-green-500"
-          />
-        </div>
+        <Input
+          id="nickname"
+          label="Apelido"
+          type="text"
+          v-model="form.nickname"
+        />
       </div>
 
       <hr class="block md:hidden w-full border-gray-100 my-8" />
 
       <div class="flex flex-col md:flex-row items-center gap-4">
-        <div class="flex flex-col gap-2 w-full">
-          <label for="father">Nome do pai</label>
+        <Input
+          id="father"
+          label="Nome do pai"
+          type="text"
+          v-model="form.father"
+        />
 
-          <input
-            v-model="form.father"
-            type="text"
-            id="father"
-            class="w-full h-[48px] px-4 rounded-xl border border-gray-300 outline-none focus:border-green-500"
-          />
-        </div>
-
-        <div class="flex flex-col gap-2 w-full">
-          <label for="mother">Nome da mãe</label>
-
-          <input
-            v-model="form.mother"
-            type="text"
-            id="mother"
-            class="w-full h-[48px] px-4 rounded-xl border border-gray-300 outline-none focus:border-green-500"
-          />
-        </div>
+        <Input
+          id="mother"
+          label="Nome da mãe"
+          type="text"
+          v-model="form.mother"
+        />
       </div>
 
       <hr class="block md:hidden w-full border-gray-100 my-8" />
 
       <div class="flex flex-col md:flex-row items-center gap-4">
-        <div class="flex flex-col gap-2 w-full">
-          <label for="document">CPF</label>
+        <Input id="document" label="CPF" type="text" v-model="form.document" />
 
-          <input
-            v-model="form.document"
-            type="text"
-            id="document"
-            placeholder="___.___.___-__"
-            class="w-full h-[48px] px-4 rounded-xl border border-gray-300 outline-none focus:border-green-500"
-          />
-        </div>
+        <Input
+          id="birthday"
+          label="Data de nascimento"
+          type="text"
+          placeholder="__/__/__"
+          v-model="form.birthday"
+        />
 
-        <div class="flex flex-col gap-2 w-full">
-          <label for="birthday">Data de nascimento</label>
-
-          <input
-            v-model="form.birthday"
-            type="text"
-            id="birthday"
-            placeholder="__/__/__"
-            class="w-full h-[48px] px-4 rounded-xl border border-gray-300 outline-none focus:border-green-500"
-          />
-        </div>
-
-        <div class="flex flex-col gap-2 w-full">
-          <label for="job">Cargo</label>
-
-          <input
-            v-model="form.job"
-            type="text"
-            id="job"
-            placeholder="__/__/__"
-            class="w-full h-[48px] px-4 rounded-xl border border-gray-300 outline-none focus:border-green-500"
-          />
-        </div>
+        <Input
+          id="job"
+          label="Cargo"
+          type="text"
+          placeholder="__/__/__"
+          v-model="form.job"
+        />
       </div>
     </section>
 
