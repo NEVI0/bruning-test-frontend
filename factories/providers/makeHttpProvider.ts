@@ -5,7 +5,8 @@ let instance: HttpProviderAbstract | null = null;
 
 export default function makeHttpProvider() {
   if (!instance) {
-    instance = new FetchHttpProvider();
+    const baseUrl = useRuntimeConfig().public.PHP_API_BASE_URL as string;
+    instance = new FetchHttpProvider(baseUrl);
   }
 
   return instance;

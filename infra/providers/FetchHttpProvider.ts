@@ -5,7 +5,11 @@ import type {
 } from '~~/domain/providers';
 
 export default class FetchHttpProvider implements HttpProviderAbstract {
-  private readonly baseUrl: string = process.env.API_URL as string;
+  private baseUrl: string = '';
+
+  constructor(baseUrl: string) {
+    this.baseUrl = baseUrl;
+  }
 
   public get: HttpProviderAbstract['get'] = async <T>(
     url: string,
@@ -76,6 +80,6 @@ export default class FetchHttpProvider implements HttpProviderAbstract {
   };
 
   private buildRequestUrl(url: string) {
-    return `${this.baseUrl}/${url}`;
+    return `${this.baseUrl}${url}`;
   }
 }
