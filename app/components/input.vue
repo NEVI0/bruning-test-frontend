@@ -1,11 +1,15 @@
 <script setup lang="ts">
-defineProps<{
+interface Props {
   id: string;
   label: string;
   type: string;
-  placeholder: string;
+  placeholder?: string;
   modelValue: string;
-}>();
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  placeholder: '',
+});
 
 defineEmits<{
   (e: 'update:modelValue', value: string): void;
