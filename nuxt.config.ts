@@ -26,9 +26,16 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
-
+  runtimeConfig: {
+    public: {
+      PHP_API_BASE_URL: process.env.PHP_API_BASE_URL,
+    },
+  },
   vite: {
     plugins: [tailwindcss()],
+    define: {
+      PHP_API_BASE_URL: JSON.stringify(process.env.PHP_API_BASE_URL),
+    },
   },
 
   modules: ['@nuxt/icon'],
