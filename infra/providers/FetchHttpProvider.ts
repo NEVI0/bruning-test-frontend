@@ -5,11 +5,13 @@ import type {
 } from '~~/domain/providers';
 
 export default class FetchHttpProvider implements HttpProviderAbstract {
+  private readonly baseUrl: string = process.env.API_URL as string;
+
   public get: HttpProviderAbstract['get'] = async <T>(
     url: string,
     options?: HttpProviderOptions
   ) => {
-    const request = await fetch(url, {
+    const request = await fetch(this.buildRequestUrl(url), {
       ...(options && { ...options }),
       method: 'GET',
       headers: {
@@ -26,7 +28,7 @@ export default class FetchHttpProvider implements HttpProviderAbstract {
     body: HttpProviderPayload,
     options?: HttpProviderOptions
   ) => {
-    const request = await fetch(url, {
+    const request = await fetch(this.buildRequestUrl(url), {
       ...(options && { ...options }),
       method: 'POST',
       headers: {
@@ -44,7 +46,7 @@ export default class FetchHttpProvider implements HttpProviderAbstract {
     body: HttpProviderPayload,
     options?: HttpProviderOptions
   ) => {
-    const request = await fetch(url, {
+    const request = await fetch(this.buildRequestUrl(url), {
       ...(options && { ...options }),
       method: 'PUT',
       headers: {
@@ -61,7 +63,7 @@ export default class FetchHttpProvider implements HttpProviderAbstract {
     url: string,
     options?: HttpProviderOptions
   ) => {
-    const request = await fetch(url, {
+    const request = await fetch(this.buildRequestUrl(url), {
       ...(options && { ...options }),
       method: 'DELETE',
       headers: {
@@ -72,4 +74,8 @@ export default class FetchHttpProvider implements HttpProviderAbstract {
     const response = await request.json();
     return response as T;
   };
+
+  private buildRequestUrl(url: string) {
+    return `${this.baseUrl}/${url}`;
+  }
 }
