@@ -5,6 +5,13 @@ export default defineNuxtConfig({
   srcDir: 'app',
   css: ['~/assets/css/main.css'],
 
+  // TODO: Add alias for domain, repositories and entities
+  // alias: {
+  //   '@domain': './domain/**/*.*',
+  //   '@repositories': './domain/repositories/**/*.*',
+  //   '@entities': './domain/entities/**/*.*',
+  // },
+
   app: {
     head: {
       title: 'Bruning Sistemas',
