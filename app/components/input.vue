@@ -5,10 +5,12 @@ interface Props {
   type: string;
   placeholder?: string;
   modelValue: string;
+  disabled?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   placeholder: '',
+  disabled: false,
 });
 
 defineEmits<{
@@ -26,9 +28,10 @@ defineEmits<{
       :id="id"
       :type="type"
       :value="modelValue"
+      :disabled="disabled"
       :placeholder="placeholder"
       @input="$emit('update:modelValue', $event.target.value)"
-      class="w-full h-[48px] px-4 rounded-xl border border-gray-300 outline-none focus:border-green-500"
+      class="w-full h-[48px] px-4 rounded-xl border border-gray-300 outline-none focus:border-green-500 disabled:border-gray-100 disabled:cursor-no-drop"
     />
   </div>
 </template>
