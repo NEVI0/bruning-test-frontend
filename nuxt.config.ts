@@ -2,15 +2,10 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
+
   srcDir: 'app',
   css: ['~/assets/css/main.css'],
-
-  // TODO: Add alias for domain, repositories and entities
-  // alias: {
-  //   '@domain': './domain/**/*.*',
-  //   '@repositories': './domain/repositories/**/*.*',
-  //   '@entities': './domain/entities/**/*.*',
-  // },
+  modules: ['@nuxt/icon', 'nuxt-lottie'],
 
   app: {
     head: {
@@ -22,7 +17,6 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
     },
   },
-
   devtools: {
     enabled: true,
   },
@@ -37,6 +31,8 @@ export default defineNuxtConfig({
       PHP_API_BASE_URL: JSON.stringify(process.env.PHP_API_BASE_URL),
     },
   },
-
-  modules: ['@nuxt/icon'],
+  lottie: {
+    componentName: 'Lottie',
+    lottieFolder: '/assets/lottie',
+  },
 });
