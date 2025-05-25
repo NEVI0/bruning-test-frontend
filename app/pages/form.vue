@@ -69,6 +69,14 @@ onMounted(() => {
     formData.value = JSON.parse(queryData);
   }
 });
+
+const submitButtonText = computed(() => {
+  if (isLoading.value) {
+    return 'Salvando...';
+  }
+
+  return 'Salvar';
+});
 </script>
 
 <template>
@@ -161,17 +169,18 @@ onMounted(() => {
       class="flex flex-col md:flex-row items-center justify-between gap-4"
     >
       <div class="flex items-center gap-4 w-full md:w-auto">
-        <Button class="w-full md:w-[144px]" @click="handleGoBack"
-          >Voltar</Button
-        >
-        <Button class="w-full md:w-[144px]" @click="handleClearForm"
-          >Limpar</Button
-        >
+        <Button class="w-full md:w-[144px]" @click="handleGoBack">
+          Voltar
+        </Button>
+
+        <Button class="w-full md:w-[144px]" @click="handleClearForm">
+          Limpar
+        </Button>
       </div>
 
-      <Button class="w-full md:w-[144px]" variant="primary" type="submit">{{
-        isLoading ? 'Salvando...' : 'Salvar'
-      }}</Button>
+      <Button class="w-full md:w-[144px]" variant="primary" type="submit">
+        {{ submitButtonText }}
+      </Button>
     </section>
   </form>
 </template>
