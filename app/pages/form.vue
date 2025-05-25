@@ -2,7 +2,10 @@
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 
-import { makeCreateEmployeeUseCase } from '~~/factories/useCases';
+import {
+  makeCreateEmployeeUseCase,
+  makeUpdateEmployeeUseCase,
+} from '~~/factories/useCases';
 
 const router = useRouter();
 
@@ -17,6 +20,18 @@ const formData = ref({
   document: '',
   birthday: '',
   job: '',
+});
+
+const isEditing = computed(() => {
+  return !!useRoute().query.data;
+});
+
+const submitButtonText = computed(() => {
+  if (isLoading.value) {
+    return 'Salvando...';
+  }
+
+  return 'Salvar';
 });
 
 const handleGoBack = () => {
@@ -41,7 +56,13 @@ const handleSubmitForm = async () => {
   try {
     isLoading.value = true;
 
-    await makeCreateEmployeeUseCase().execute({
+    console.log('isEditing: ', isEditing.value);
+
+    const useCase = isEditing.value
+      ? makeUpdateEmployeeUseCase()
+      : makeCreateEmployeeUseCase();
+
+    await useCase.execute({
       id: formData.value.code,
       name: formData.value.name,
       nickname: formData.value.nickname,
@@ -69,14 +90,6 @@ onMounted(() => {
     formData.value = JSON.parse(queryData);
   }
 });
-
-const submitButtonText = computed(() => {
-  if (isLoading.value) {
-    return 'Salvando...';
-  }
-
-  return 'Salvar';
-});
 </script>
 
 <template>
@@ -88,7 +101,13 @@ const submitButtonText = computed(() => {
   <form @submit.prevent="handleSubmitForm" class="flex flex-col gap-16">
     <section class="flex flex-col gap-4">
       <div class="flex flex-col md:flex-row items-center gap-4">
-        <Input id="code" label="Código" type="text" v-model="formData.code" />
+        <Input
+          id="code"
+          label="Código"
+          type="text"
+          v-model="formData.code"
+          :disabled="isEditing"
+        />
 
         <Input
           id="name"
