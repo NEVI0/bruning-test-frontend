@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const baseClasses =
-  'cursor-pointer h-[48px] px-6 rounded-xl font-medium whitespace-nowrap flex items-center justify-center transition-colors';
+  'outline-none cursor-pointer h-[48px] px-6 rounded-xl font-medium whitespace-nowrap flex items-center justify-center transition-colors';
 
 const variantClasses = {
   primary: 'text-green-500 bg-green-500/15 hover:bg-green-500/25',
