@@ -10,8 +10,9 @@ import {
 
 const router = useRouter();
 
-const isLoading = ref(false);
-const hasError = ref(false);
+const removingEmployeeId = ref<string>('');
+const isLoading = ref<boolean>(false);
+const hasError = ref<boolean>(false);
 const employees = ref<EmployeeAbstract[]>([]);
 
 const handleFetchEmployees = async () => {
@@ -39,10 +40,14 @@ const handleUpdateEmployee = (employee: EmployeeAbstract) => {
 
 const handleRemoveEmployee = async (id: string) => {
   try {
+    removingEmployeeId.value = id;
+
     await makeDeleteEmployeeByIdUseCase().execute({ id });
     handleFetchEmployees();
   } catch (error) {
     console.error('Error deleting employee:', error);
+  } finally {
+    removingEmployeeId.value = '';
   }
 };
 
@@ -104,6 +109,7 @@ onMounted(() => {
         v-for="employee in employees"
         :key="employee.id"
         :employee="employee"
+        :is-removing="removingEmployeeId === employee.id"
         @edit="handleUpdateEmployee"
         @remove="handleRemoveEmployee"
       />

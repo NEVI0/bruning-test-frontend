@@ -1,19 +1,18 @@
 <script setup lang="ts">
-interface Employee {
-  id: number;
-  name: string;
-  birthday: string;
-}
+import type { EmployeeAbstract } from '~~/domain/entities';
 
 interface Props {
-  employee: Employee;
+  isRemoving?: boolean;
+  employee: EmployeeAbstract;
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  isRemoving: false,
+});
 
 const emit = defineEmits<{
-  (e: 'edit', employee: Employee): void;
-  (e: 'remove', id: number): void;
+  (e: 'edit', employee: EmployeeAbstract): void;
+  (e: 'remove', id: string): void;
 }>();
 
 const handleEdit = () => {
@@ -43,14 +42,23 @@ const handleRemove = () => {
     <div class="flex items-center gap-4">
       <button
         @click="handleEdit"
-        class="cursor-pointer w-[40px] h-[40px] md:w-[44px] md:h-[44px] flex items-center justify-center rounded-xl text-green-500 hover:bg-green-500/15 transition-colors"
+        :disabled="isRemoving"
+        class="cursor-pointer disabled:cursor-not-allowed w-[40px] h-[40px] md:w-[44px] md:h-[44px] flex items-center justify-center rounded-xl text-green-500 hover:bg-green-500/15 transition-colors"
       >
         <Icon name="lucide:pen-line" style="width: 24px; height: 24px" />
       </button>
 
       <div class="w-[1px] h-[16px] bg-gray-300 rounded-full" />
 
+      <div
+        v-if="isRemoving"
+        class="w-[40px] h-[40px] md:w-[44px] md:h-[44px] flex items-center justify-center rounded-xl"
+      >
+        <Spinner />
+      </div>
+
       <button
+        v-else
         @click="handleRemove"
         class="cursor-pointer w-[40px] h-[40px] md:w-[44px] md:h-[44px] flex items-center justify-center rounded-xl text-red-600 hover:bg-red-600/15 transition-colors"
       >
