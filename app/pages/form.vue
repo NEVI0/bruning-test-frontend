@@ -56,8 +56,6 @@ const handleSubmitForm = async () => {
   try {
     isLoading.value = true;
 
-    console.log('isEditing: ', isEditing.value);
-
     const useCase = isEditing.value
       ? makeUpdateEmployeeUseCase()
       : makeCreateEmployeeUseCase();
@@ -66,10 +64,8 @@ const handleSubmitForm = async () => {
       id: formData.value.code,
       name: formData.value.name,
       nickname: formData.value.nickname,
-      parents: {
-        father: formData.value.father,
-        mother: formData.value.mother,
-      },
+      father: formData.value.father,
+      mother: formData.value.mother,
       document: formData.value.document,
       birthdate: formData.value.birthday,
       jobDate: formData.value.job,
@@ -87,7 +83,18 @@ onMounted(() => {
   const queryData = useRoute().query.data;
 
   if (queryData) {
-    formData.value = JSON.parse(queryData);
+    const employee = JSON.parse(queryData);
+
+    formData.value = {
+      code: employee.id,
+      name: employee.name,
+      nickname: employee.nickname,
+      father: employee.parents.father,
+      mother: employee.parents.mother,
+      document: employee.document,
+      birthday: employee.birthdate,
+      job: employee.jobDate,
+    };
   }
 });
 </script>
