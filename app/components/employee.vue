@@ -35,15 +35,15 @@ const handleRemove = () => {
         {{ employee.name }}
       </p>
 
-      <small class="text-gray-500 text-sm"
-        >Nascimento: {{ employee.birthday }}</small
-      >
+      <small class="text-gray-500 text-sm">
+        Nascimento: {{ employee.birthdate }}
+      </small>
     </div>
 
     <div class="flex items-center gap-4">
       <button
         @click="handleEdit"
-        class="w-[40px] h-[40px] md:w-[44px] md:h-[44px] flex items-center justify-center rounded-xl text-green-500 hover:bg-green-500/15 transition-colors"
+        class="cursor-pointer w-[40px] h-[40px] md:w-[44px] md:h-[44px] flex items-center justify-center rounded-xl text-green-500 hover:bg-green-500/15 transition-colors"
       >
         <Icon name="lucide:pen-line" style="width: 24px; height: 24px" />
       </button>
@@ -52,7 +52,7 @@ const handleRemove = () => {
 
       <button
         @click="handleRemove"
-        class="w-[40px] h-[40px] md:w-[44px] md:h-[44px] flex items-center justify-center rounded-xl text-red-600 hover:bg-red-600/15 transition-colors"
+        class="cursor-pointer w-[40px] h-[40px] md:w-[44px] md:h-[44px] flex items-center justify-center rounded-xl text-red-600 hover:bg-red-600/15 transition-colors"
       >
         <Icon name="lucide:trash-2" style="width: 24px; height: 24px" />
       </button>
