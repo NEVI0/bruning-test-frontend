@@ -1,75 +1,53 @@
-# Nuxt Minimal Starter
+# Sistema de Gerenciamento de Colaboradores
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Uma aplicação Nuxt para gerenciar registros de colaboradores com funcionalidades para visualizar, adicionar, editar e remover informações de colaboradores.
 
-## Setup
+## Pré-requisitos
 
-Make sure to install dependencies:
+- Node.js (v16 ou superior)
+- npm ou yarn como gerenciador de pacotes
+
+## Configuração
+
+1. Clone o repositório:
 
 ```bash
-# npm
+git clone https://github.com/NEVI0/bruning-test-frontend.git
+cd bruning-test-frontend
+```
+
+2. Instale as dependências:
+
+```bash
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
+# ou
 yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+## Desenvolvimento
 
-Start the development server on `http://localhost:3000`:
+Para iniciar o servidor de desenvolvimento:
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
+# ou
 yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+A aplicação estará disponível em `http://localhost:3000` (ou outra porta se a 3000 estiver em uso).
 
-Build the application for production:
+## Funcionalidades
 
-```bash
-# npm
-npm run build
+- Visualizar lista de colaboradores
+- Adicionar novos colaboradores
+- Editar informações de colaboradores existentes
+- Remover colaboradores
+- Estados de carregamento e tratamento de erros
+- Design responsivo
 
-# pnpm
-pnpm build
+## Stack Tecnológica
 
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- Vue.js
+- TypeScript
+- Nuxt.js
+- Tailwind CSS
