@@ -1,4 +1,4 @@
-import { Employee, type EmployeeAbstract } from '~~/domain/entities';
+import { Employee, type EmployeeProps } from '~~/domain/entities';
 import type { HttpProviderAbstract } from '~~/domain/providers';
 import type { EmployeeRepository } from '~~/domain/repositories';
 
@@ -8,7 +8,7 @@ export default class ApiEmployeeRepository implements EmployeeRepository {
   public findAll: EmployeeRepository['findAll'] = async () => {
     const response = await this.httpProvider.get<{
       count: number;
-      employees: EmployeeAbstract[];
+      employees: EmployeeProps[];
     }>('/employee');
 
     return response.employees.map((employee) => new Employee(employee));
