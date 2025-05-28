@@ -52,7 +52,6 @@ const handleRemoveEmployee = async (id: string) => {
     await makeDeleteEmployeeByIdUseCase().execute({ id });
     handleFetchEmployees();
   } catch (error) {
-    console.error('Error deleting employee:', error);
   } finally {
     removingEmployeeId.value = '';
   }
