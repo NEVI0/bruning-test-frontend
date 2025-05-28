@@ -1,4 +1,4 @@
-import type { EmployeeAbstract } from '~~/domain/entities';
+import { Employee, type EmployeeAbstract } from '~~/domain/entities';
 import type { HttpProviderAbstract } from '~~/domain/providers';
 import type { EmployeeRepository } from '~~/domain/repositories';
 
@@ -6,11 +6,12 @@ export default class ApiEmployeeRepository implements EmployeeRepository {
   constructor(private readonly httpProvider: HttpProviderAbstract) {}
 
   public findAll: EmployeeRepository['findAll'] = async () => {
-    const response = await this.httpProvider.get<EmployeeAbstract[]>(
-      '/employees'
-    );
+    const response = await this.httpProvider.get<{
+      count: number;
+      employees: EmployeeAbstract[];
+    }>('/employee');
 
-    return response;
+    return response.employees.map((employee) => new Employee(employee));
   };
 
   public create: EmployeeRepository['create'] = async (employee) => {
@@ -24,12 +25,7 @@ export default class ApiEmployeeRepository implements EmployeeRepository {
       jobDate: employee.jobDate,
     };
 
-    const response = await this.httpProvider.post<EmployeeAbstract>(
-      '/employees',
-      payload
-    );
-
-    return response;
+    await this.httpProvider.post('/employee', payload);
   };
 
   public update: EmployeeRepository['update'] = async (employee) => {
@@ -42,15 +38,10 @@ export default class ApiEmployeeRepository implements EmployeeRepository {
       jobDate: employee.jobDate,
     };
 
-    const response = await this.httpProvider.put<EmployeeAbstract>(
-      `/employees/${employee.id}`,
-      payload
-    );
-
-    return response;
+    await this.httpProvider.put(`/employee/${employee.id}`, payload);
   };
 
   public deleteById: EmployeeRepository['deleteById'] = async (id) => {
-    await this.httpProvider.delete(`/employees/${id}`);
+    await this.httpProvider.delete(`/employee/${id}`);
   };
 }
