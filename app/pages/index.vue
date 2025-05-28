@@ -10,7 +10,7 @@ import {
 
 const router = useRouter();
 
-const isLoading = ref(true);
+const isLoading = ref(false);
 const hasError = ref(false);
 const employees = ref<EmployeeAbstract[]>([]);
 
@@ -19,8 +19,8 @@ const handleFetchEmployees = async () => {
     isLoading.value = true;
     hasError.value = false;
 
-    const employees = await makeFindAllEmployeesUseCase().execute();
-    this.employees = employees;
+    const foundEmployees = await makeFindAllEmployeesUseCase().execute();
+    employees.value = foundEmployees;
   } catch (error) {
     hasError.value = true;
   } finally {
@@ -28,15 +28,11 @@ const handleFetchEmployees = async () => {
   }
 };
 
-const handleUpdateEmployee = (employee: (typeof employees.value)[0]) => {
+const handleUpdateEmployee = (employee: EmployeeAbstract) => {
   router.push({
     path: '/form',
     query: {
-      data: JSON.stringify({
-        ...sampleData.value,
-        name: employee.name,
-        birthday: employee.birthday,
-      }),
+      data: JSON.stringify(employee),
     },
   });
 };
