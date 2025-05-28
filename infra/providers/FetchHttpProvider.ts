@@ -24,6 +24,8 @@ export default class FetchHttpProvider implements HttpProviderAbstract {
     });
 
     const response = await request.json();
+    if (!request.ok) this.handleRequestError(response);
+
     return response as T;
   };
 
@@ -42,6 +44,8 @@ export default class FetchHttpProvider implements HttpProviderAbstract {
     });
 
     const response = await request.json();
+    if (!request.ok) this.handleRequestError(response);
+
     return response as T;
   };
 
@@ -60,6 +64,8 @@ export default class FetchHttpProvider implements HttpProviderAbstract {
     });
 
     const response = await request.json();
+    if (!request.ok) this.handleRequestError(response);
+
     return response as T;
   };
 
@@ -76,10 +82,23 @@ export default class FetchHttpProvider implements HttpProviderAbstract {
     });
 
     const response = await request.json();
+    if (!request.ok) this.handleRequestError(response);
+
     return response as T;
   };
 
   private buildRequestUrl(url: string) {
     return `${this.baseUrl}${url}`;
+  }
+
+  private handleRequestError(error: any) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+    if ('message' in error) {
+      throw new Error(error.message);
+    }
+
+    throw new Error('Não foi possível realizar a requisição!');
   }
 }
