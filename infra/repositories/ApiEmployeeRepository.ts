@@ -19,7 +19,8 @@ export default class ApiEmployeeRepository implements EmployeeRepository {
       id: employee.id,
       name: employee.name,
       nickname: employee.nickname,
-      parents: employee.parents,
+      father: employee.parents.father,
+      mother: employee.parents.mother,
       document: employee.document,
       birthdate: employee.birthdate,
       jobDate: employee.jobDate,
@@ -32,11 +33,14 @@ export default class ApiEmployeeRepository implements EmployeeRepository {
     const payload = {
       name: employee.name,
       nickname: employee.nickname,
-      parents: employee.parents,
+      father: employee.parents.father,
+      mother: employee.parents.mother,
       document: employee.document,
       birthdate: employee.birthdate,
       jobDate: employee.jobDate,
     };
+
+    console.log('payload: ', payload);
 
     await this.httpProvider.put(`/employee/${employee.id}`, payload);
   };

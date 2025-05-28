@@ -14,7 +14,8 @@ export default class UpdateEmployeeUseCase {
         id: dto.id,
         name: dto.name,
         nickname: dto.nickname,
-        parents: dto.parents,
+        father: dto.father,
+        mother: dto.mother,
         document: dto.document,
         birthdate: dto.birthdate,
         jobDate: dto.jobDate,
@@ -35,7 +36,7 @@ export default class UpdateEmployeeUseCase {
       throw new Error('O apelido do colaborador é obrigatório!');
     }
 
-    if (!dto.parents.father || !dto.parents.mother) {
+    if (!dto.father || !dto.mother) {
       throw new Error('O nome do pai e da mãe do colaborador é obrigatório!');
     }
 
