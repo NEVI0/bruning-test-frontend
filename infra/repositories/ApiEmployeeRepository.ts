@@ -40,8 +40,6 @@ export default class ApiEmployeeRepository implements EmployeeRepository {
       jobDate: employee.jobDate,
     };
 
-    console.log('payload: ', payload);
-
     await this.httpProvider.put(`/employee/${employee.id}`, payload);
   };
 
