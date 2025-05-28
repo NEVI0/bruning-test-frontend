@@ -10,6 +10,7 @@ import {
 const router = useRouter();
 
 const isLoading = ref(false);
+const isViewing = ref(false);
 const errorMessage = ref('');
 const formData = ref({
   code: '',
@@ -81,6 +82,11 @@ const handleSubmitForm = async () => {
 
 onMounted(() => {
   const queryData = useRoute().query.data;
+  const viewing = useRoute().query.viewing;
+
+  if (viewing) {
+    isViewing.value = true;
+  }
 
   if (queryData) {
     const employee = JSON.parse(queryData);
@@ -113,7 +119,7 @@ onMounted(() => {
           label="Código"
           type="text"
           v-model="formData.code"
-          :disabled="isEditing"
+          :disabled="isEditing || isViewing"
         />
 
         <Input
@@ -121,6 +127,7 @@ onMounted(() => {
           label="Nome completo"
           type="text"
           v-model="formData.name"
+          :disabled="isViewing"
         />
 
         <Input
@@ -128,6 +135,7 @@ onMounted(() => {
           label="Apelido"
           type="text"
           v-model="formData.nickname"
+          :disabled="isViewing"
         />
       </div>
 
@@ -139,6 +147,7 @@ onMounted(() => {
           label="Nome do pai"
           type="text"
           v-model="formData.father"
+          :disabled="isViewing"
         />
 
         <Input
@@ -146,6 +155,7 @@ onMounted(() => {
           label="Nome da mãe"
           type="text"
           v-model="formData.mother"
+          :disabled="isViewing"
         />
       </div>
 
@@ -158,6 +168,7 @@ onMounted(() => {
           type="text"
           placeholder="___.___.___-__"
           v-model="formData.document"
+          :disabled="isViewing"
         />
 
         <Input
@@ -166,6 +177,7 @@ onMounted(() => {
           type="text"
           placeholder="__/__/__"
           v-model="formData.birthday"
+          :disabled="isViewing"
         />
 
         <Input
@@ -174,6 +186,7 @@ onMounted(() => {
           type="text"
           placeholder="__/__/__"
           v-model="formData.job"
+          :disabled="isViewing"
         />
       </div>
     </section>
@@ -192,6 +205,7 @@ onMounted(() => {
     </section>
 
     <section
+      v-if="!isViewing"
       class="flex flex-col md:flex-row items-center justify-between gap-4"
     >
       <div class="flex items-center gap-4 w-full md:w-auto">

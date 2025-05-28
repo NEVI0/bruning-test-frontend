@@ -29,6 +29,13 @@ const handleFetchEmployees = async () => {
   }
 };
 
+const handleViewEmployee = (employee: EmployeeAbstract) => {
+  router.push({
+    path: '/form',
+    query: { data: JSON.stringify(employee), viewing: true },
+  });
+};
+
 const handleUpdateEmployee = (employee: EmployeeAbstract) => {
   router.push({
     path: '/form',
@@ -61,7 +68,7 @@ onMounted(() => {
     v-if="isLoading"
     class="flex flex-col items-center justify-center flex-1 gap-8"
   >
-    <Lottie name="searching" width="300px" height="150px" loop="true" />
+    <Lottie name="searching" width="300px" height="150px" :loop="true" />
 
     <div
       class="flex flex-col items-center justify-center gap-2 w-full md:w-1/2"
@@ -110,6 +117,7 @@ onMounted(() => {
         :key="employee.id"
         :employee="employee"
         :is-removing="removingEmployeeId === employee.id"
+        @view="handleViewEmployee"
         @edit="handleUpdateEmployee"
         @remove="handleRemoveEmployee"
       />
